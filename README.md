@@ -2,8 +2,86 @@
 
 ## 4주차 (2023.03.23)
 ---
-```
-1. 
+```html
+1. 현재 파일 생성 이유?
+기존 23-react1 파일 삭제 후 npx으로 react에 맞게 생성,
+또한 githud에 있던 23-react1 파일 삭제 후 새롭게
+23-react1 파일로 업로드 된 상태이다.
+
+2. JSX란?
+  - 자바스크립트와 XML/HTML을 함께 사용할 수
+    있는 자바스크립트의 확장 문법 
+
+  2.1 JSX 속성 정의
+  어트리뷰트에 따옴표를 이용해 문자열 리터럴을 정의할 수 있으며,
+  중괄호를 사용하여 어트리뷰트에 JavaScript 표현식을 
+  삽입할 수도 있다.
+
+  예시-<
+    ⑴
+    const element = <a href="https://www.reactjs.org"> 
+      link 
+    </a>;
+    ⑵
+    const element = <img src={user.avatarUrl} />;
+  >
+
+  2.2 JSX로 자식 정의
+  태그가 비어있다면 XML처럼 /> 를 이용해 바로 닫아야하며,
+  JSX 태그는 자식을 포함할 수 있다.
+
+  예시-<
+    ⑴
+    const element = <img src={user.avatarUrl} />;
+    ⑵
+    const element = (
+      <div>
+        <h1>Hello!</h1>
+        <h2>Good to see you here.</h2>
+      </div>
+    );
+  >
+
+  2.3 JSX의 역할
+    - JSX는 내부적으로 XML/HTML 코드를 자바스크립트로 변환한다.
+    - React가 createElement 함수를 사용하여 자동적으로
+      자바스크립트로 변환해 준다.
+    - 만일 JS 작업할 경우 직접 createElement 함수를
+      사용해야 한다.
+    - 결국 JSX코드는 가독성을 높여주는 역할을 한다.
+
+  2.4 JSX의 장점
+    - 코드가 간결해진다.
+    - 가독성이 향상된다.
+    - Injection Attack이라 불리는 해킹 방법을 방어함으로써
+      보안에 강하다.
+
+      예시-<
+        JSX 사용할 경우
+        <div>Hello, {name}</div>
+        JSX 사용 안할 경우
+        React.createElement('div', null, `Hello, ${name}`);
+      >
+  
+  2.5 JSX 사용법
+    - 모든 자바스크립트 문법을 지원한다.
+    - 자바스크립트 문법에 XML과 HTML을 섞어서 사용한다.
+    - 만일 html이나 xml에 자바 스크립트 코드를 사용하고
+      싶으면, {} 를 사용하면 된다.
+    - 만약 태그의 속성값을 넣으려고 할 경우에는
+      
+      예시-<
+        큰따옴표 사이에 문자열을 넣는 법
+        const element = <div tabIndex="0"></div>;
+        중괄호 사이에 자바스크립트 코드를 넣는 법
+        const element = <img src={user.avatarUrl} />;
+      >
+
+3. src 파일에 chapter_03 파일 생성
+기본적 수업 내용에 대한 것을 생성했다.
+Book.jsx와 Library.jsx를 생성해서 index.jsx에 App.js가
+들어가 있던 부분을 제거 후 Library.jsx로 교체함
+그래서 현재, npm start하고 시작할 경우 Libray.jsx 화면이 실행됨
 ```
 
 <br>
@@ -34,7 +112,7 @@ Node.js 및 npm 설치를 해야하며, VSCode를 이용하는 것이 편하다.
 
   1-1 리액트의 장점
   
-    1. 빠른 업데이트와 렌더링 속도
+    1.1 빠른 업데이트와 렌더링 속도
       - 이것을 가능하게 하는 것이 바로 Virtual DOM이다.
       -  DOM(Document Object Model)이란 XML, HTML 문서의 각 
       항목을 계층으로 표현하여 생성, 변형, 삭제할 수 있도록 
@@ -47,7 +125,7 @@ Node.js 및 npm 설치를 해야하며, VSCode를 이용하는 것이 편하다.
   <img src="public\assets\Virtual_DOM.png">
 
 ```
-    2. 컴포넌트 기반 구조
+    1.2 컴포넌트 기반 구조
       - 리액트의 모든 페이지는 컴포넌트 구성된다.
       - 하나의 컴포넌트는 다른 여러 개의 컴포넌트의 조합으로 
       구성할 수 있다.
@@ -56,7 +134,7 @@ Node.js 및 npm 설치를 해야하며, VSCode를 이용하는 것이 편하다.
       - 에어비앤비(https://www.airbnb.co.kr/) 사이트화면의 
       컴포넌트 구조를 보면 재사용성이 뛰어나다.
 
-    3. 재사용성
+    1.3 재사용성
       - 반복적인 작업을 줄여주기 때문에 생성성을 높여준다.
       - 또한 유지보수가 용이하다.
       - 재사용이 가능하려면 해당 모듈의 의존성이 없어야 한다.
@@ -64,13 +142,13 @@ Node.js 및 npm 설치를 해야하며, VSCode를 이용하는 것이 편하다.
 <img src="public\assets\recyc.png">
 
 ```
-    4. 든든한 지원군
+    1.4 든든한 지원군
       - 메타(구 페이스북)에서 오픈소스 프로젝트로 관리하고 있어
       계속 발전하고 있다.
 
-    5. 활발한 지식 공유 & 커뮤니티
+    1.5 활발한 지식 공유 & 커뮤니티
 
-    6. 모바일 앱 개발가능
+    1.6 모바일 앱 개발가능
       - 리액트 네이티브라는 모바일 환경 UI프레임워크를 사용하면 
       크로스 플랫폼(Cross-Platform) 모바일 앱을 개발할 수 있다.
 

@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './App'; //App.js 파일을 화면에 띄우는 링크를 따오는 곳이다.
 import reportWebVitals from './reportWebVitals';
+import Library from './chapter_03/Library';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Library />
   </React.StrictMode>
 );
 
