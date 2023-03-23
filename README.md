@@ -44,7 +44,7 @@ Node.js 및 npm 설치를 해야하며, VSCode를 이용하는 것이 편하다.
       - DOM은 동기식, Virtual DOM은 비동기식 방법으로 렌더링 
       한다.
   ```
-  <img src="./React/img/Virtual_DOM.png">
+  <img src="public\assets\Virtual_DOM.png">
 
 ```
     2. 컴포넌트 기반 구조
@@ -61,7 +61,7 @@ Node.js 및 npm 설치를 해야하며, VSCode를 이용하는 것이 편하다.
       - 또한 유지보수가 용이하다.
       - 재사용이 가능하려면 해당 모듈의 의존성이 없어야 한다.
 ```
-<img src="./React/img/Component.png">
+<img src="public\assets\recyc.png">
 
 ```
     4. 든든한 지원군
