@@ -3,14 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App'; //App.js 파일을 화면에 띄우는 링크를 따오는 곳이다.
 import reportWebVitals from './reportWebVitals';
-import Library from './chapter_03/Library';
+import Library from './chapter_03/Library'; // Library.js 파일의 화면의 링크
+import Clock from './chapter_04/Clock';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <Library />
-  </React.StrictMode>
-);
+setInterval(() => {
+  root.render(
+    <React.StrictMode>
+      <Clock />
+      {/* <Library /> */}
+      {/* <App /> */}
+    </React.StrictMode>
+  );
+}, 1000);
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
