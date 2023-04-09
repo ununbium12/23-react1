@@ -69,6 +69,7 @@
 4. Clock 코드(js버전)
 <br>
   = Clock.jsx =
+  
 ```js
   import React from "react";
   function Clock(props) {
@@ -81,7 +82,9 @@
   }
   export default Clock;
 ```
+
 = index.js =
+
 ```js
   const root = ReactDOM.createRoot(
     document.getElementById('root')
