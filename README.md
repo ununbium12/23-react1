@@ -1,5 +1,139 @@
 # 정다훈 (201930325)
 
+## 7주차 (2023.04.13)
+---
+### 7장 내용
+= 훅
+1. 훅인란?
+>  - 클래스형 컴포넌트에서는 생성자(constructor)에서 state를 정의하고, setState() 함수를 통해 state를 업데이트 한다.
+>  -  예전에 사용하던 함수형 컴포넌트는 별도로 state를 정의하거나, 컴포넌트의 생명주기에 맞춰서 어떤 코드가 실행되도록 할 수 없었다.
+
+2. useState()
+>  - useState는 함수형 컴포넌트에서 state를 사용하기 위한 Hook이다.
+>  - 함수형에는 State 형이 없기 때문에 useState를 사용한다.
+>  - useState()의 사용법은
+```jsx
+  const (변수명, set함수명) = useState(초깃값);
+  // 변수 각각에 대해 set함수가 따로 존재한다.
+```
+
+3. useEffect
+>  - useState와 함깨 가장 많이 사용하는 Hook이다.
+>  - 이 함수는 사이드 이펙트를 수행하기 위한 것이다.
+>  - 영어로는 side effect는 부작용을 의미하는데, 일반적으로 프로그래밍에서 사이트 이펙트는 '개발자가 의도하지 않은 코드가 실행되면서 버그가 발생하는 것'이다. 하지만 리액트에서는 효과 또는 영향을 뜻하는 effect라는 의미에 가깝다.
+>    - (교수님의 추가 설명 : 부작용이라기 보단 변이? 완전히 나쁜게 아니라고 한다.)
+>  - sideEffect는 렌더링 외에 실행해야 하는 부수적인 코드를 말한다.
+>  - 예시로 네트워크 리퀘스트, DOM 수동 조작, 로깅 등은 정리(clean-up)가 필요 없는 경우들 이다.
+> useEffect() 사용법은
+```jsx
+  useEffect(이펙트 함수, 의존성 배열);
+  // 의존성 배열안에 있는 변수 중에 하나라도 값이 변경되면, 이펙트 함수가 실행 된다.
+  useEffect(이펙트 함수, [])
+  // 의존성 배열에 빈 배열을 넣으면 마운트와 언마운트시에 단 한번만 실행이 된다.
+```
+= 예시 코드 =
+```jsx
+  useEffect(() => {
+    Axios.get(`http://localhost:8080/api/어쩌구저쩌구/예시코드입니다.`)
+    .then(res => {
+      setList(res);
+    })
+    .catch(err => {
+      alert("에라가 발생했습니다.");
+      console.log(err);
+    });
+    return() => {
+    }
+  }, []);
+```
+
+4. useMemo
+>  - useMemo() 혹은 Memoizde value를 리턴하는 훅이다.
+>  - 연산량이 높은 작업이 매번 렌더링될 때마다 반복되는 것을 피하기 위해 사용한다.
+>  - 렌더링이 일어나는 동안 실행되므로 렌더링이 일어나는 동안 실행되서는 안될 작업을 useMemo()에 넣으면 안된다.
+>  - 사용법은
+```jsx
+  const memoizedValue = useMemo(값 생성 함수, 의존성 배열);
+```
+
+= 예시코드 =
+```jsx
+  const useMemoi = (fn) => { 
+    let cache = {}; 
+    return (n) => { 
+      if(cache[n] === undefined) { 
+        cache[n] = fn(n); 
+        } 
+        return cache[n]; 
+  }}
+  const addTwo = useMemoi((num) => { return num + 2; });
+  console.log(addTwo(2));
+  //4 console.log(addTwo(2)); //4 (memoized value)
+```
+
+5. useCallback
+>  - useMemo() 훅과 유사하지만, 값이 아닌 함수를 반환한다는 점이 다르다.
+>  - useCallback(콜백 함수, 의존성 배열);은 useMemo(() => 콜백 함수, 의존성 배열); 과 동일
+>  - 컴포넌트 내에 함수를 정의하면 매번 렌더링이 일어날 때마다 함수가 새로 정의되므로 useCallback() 훅을 사용하여 불필요한 함수 재정의 작업을 없애는 것이다.
+>  - 사용법은
+```jsx
+  const memoizedCallback = useCallback(콜백 함수, 의존성 배열);
+```
+
+= 예시코드 =
+```jsx
+const UseCallbackComponent = () => {
+  //함수 생성
+  const handleClick = useCallback(() => {
+    alert('Clicked');
+  }, []);
+  return (
+    <div>
+      <h3>useCallback Example</h3>
+      <button onClick={handleClick}>Click Me</button>
+    </div>
+  );
+};
+```
+
+
+6. useRef
+>  - useRef() 혹은 레퍼런스를 사용하기 위한 훅이다.
+>  - 레퍼런스란 특정 컴포넌트에 접근할 수 있는 객체를 의미한다.
+>  - 매번 렌더링될 때마다 항상 같은 레퍼런스 객체를 반환한다.
+>  - 사용법은
+```jsx
+  const refContainr = useRef(초깃값);
+```
+
+= 예시코드 =
+```jsx
+  const inputRef = useRef();
+  const handleOnClick = ( ) => { 
+    inputRef.current.focus(); 
+  };
+
+  return ( 
+    <> 
+      Focus Input 
+    </> 
+);
+```
+
+7. 훅의 규칙
+>  - 첫 번째 규칙은 무조건 최상위 레벨에서만 호출해야 한다는 것이다. 여기서 최상위는 컴포넌트의 최상위 레벨을 의미한다.
+>     - 반복문이나 조건문 또는 중첩된 함수들 안에서 훅을 호출해선 안된다.
+>     - 훅은 컴포넌트가 렌더링될 때마다 같은 순서로 호출되어야 한다.
+>  - 두 번째 규칙은 리액트 함수 컴포넌트에서만 훅을 호출 해야한다.
+>     - 훅은 리액트 함수 컴포넌트에서 호출하거나 직접 만든 커스텀 훅에서만 호출 할 수 있다.
+
+8. 나만의 훅 만들기 
+>  - 커스텀 훅
+>     - 이름이 use로 시작하고 내부에서 다른 훅을 호출하는 단순한 자바 스크립트 함수
+>     - 파라미터로 무엇을 받을지, 어떤 것을 리턴해야 할지를 개발자가 직접 정할 수 있다.
+>     - 죽복되는 로직을 커스텀 훅으로 추출해서 재사용성 높인다.
+>     - 이름이 use로 시작하지 않으면 특정 함수의 내부에서 훅을 호출하는지 알 수 없기 때문에 훅의 규칙 위반 여부를 자동으로 확인 할 수 없다.
+
 ## 6주차 (2023.04.06)
 ---
 ### 5장 내용

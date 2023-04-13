@@ -1,0 +1,5 @@
+{
+    "CodeGPT.query.language": "Korean",
+    "CodeGPT.model": "gpt-4",
+    "CodeGPT.maxTokens": 10000
+}

@@ -6,13 +6,15 @@ import reportWebVitals from './reportWebVitals';
 // import Library from './chapter_03/Library'; // Library.jsx 파일의 화면의 링크
 // import Clock from './chapter_04/Clock'; // Clock.jsx 파일의 화면의 링크
 // import CommentList from './chapter_05/CommentList'; // CommentList.jsx 파일의 화면의 링크
-import NotificationList from './chapter_06/NotificationList';
+import NotificationList from './chapter_06/NotificationList'; // NotificationList.jsx 파일의 화면의 링크
+import Accommodate from './chapter_07/Accommodate'; // Accommodate.jsx 파일의 화면의 링크
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
   root.render(
     <React.StrictMode>
-      <NotificationList />
+      <Accommodate />
+      {/* <NotificationList /> */}
       {/* <CommentList /> */}
       {/* <Clock /> */}
       {/* <Library /> */}
