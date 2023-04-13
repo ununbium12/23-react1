@@ -58,7 +58,7 @@
 
 = 예시코드 =
 ```jsx
-  const useMemoi = (fn) => { 
+  const useMemo = (fn) => { 
     let cache = {}; 
     return (n) => { 
       if(cache[n] === undefined) { 
@@ -66,7 +66,7 @@
         } 
         return cache[n]; 
   }}
-  const addTwo = useMemoi((num) => { return num + 2; });
+  const addTwo = useMemo((num) => { return num + 2; });
   console.log(addTwo(2));
   //4 console.log(addTwo(2)); //4 (memoized value)
 ```
