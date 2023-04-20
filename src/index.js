@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App'; //App.js 파일을 화면에 띄우는 링크를 따오는 곳이다.
 import reportWebVitals from './reportWebVitals';
-// import Library from './chapter_03/Library'; // Library.jsx 파일의 화면의 링크
-// import Clock from './chapter_04/Clock'; // Clock.jsx 파일의 화면의 링크
-// import CommentList from './chapter_05/CommentList'; // CommentList.jsx 파일의 화면의 링크
+import Library from './chapter_03/Library'; // Library.jsx 파일의 화면의 링크
+import Clock from './chapter_04/Clock'; // Clock.jsx 파일의 화면의 링크
+import CommentList from './chapter_05/CommentList'; // CommentList.jsx 파일의 화면의 링크
 import NotificationList from './chapter_06/NotificationList'; // NotificationList.jsx 파일의 화면의 링크
 import Accommodate from './chapter_07/Accommodate'; // Accommodate.jsx 파일의 화면의 링크
 
@@ -14,10 +14,10 @@ setInterval(() => {
   root.render(
     <React.StrictMode>
       <Accommodate />
-      {/* <NotificationList /> */}
-      {/* <CommentList /> */}
-      {/* <Clock /> */}
-      {/* <Library /> */}
+      <NotificationList />
+      <CommentList />
+      <Clock />
+      <Library />
       {/* <App /> */}
     </React.StrictMode>
   );
