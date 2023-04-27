@@ -1,9 +1,136 @@
 # 정다훈 (201930325)
 
-## 7주차 (2023.04.13)
+
+## **9주차 (2023.04.27)**
 ---
-### 7장 내용
-= 훅
+### **8장 내용(이벤트 핸들링)**
+
+1. **이벤트 처리하기**
+  - DOM에서 클릭 이벤트를 처리하는 예제 코드.
+
+    ```html
+    <button onclick="activate()">
+      Activate
+    </button>
+    ```
+
+  - React에서 클릭 이벤트 처리하는 예제 코드.
+
+    ```html
+    <button onClick={activate}>
+      Activate
+    </button>
+    ```
+  - 이 둘의 차이점은?<br>
+    1. 이벤트 이름이 onclick에서 onClick으로 변경(Camel case)
+    2. 전달하려는 함수는 문자열에서 함수 그대로 전달
+    
+    <br>
+
+  - 이벤트 핸들러의 추가 방법은?
+    1. bind를 사용한다. 만약 사용하지 않을 경우, this.handleClick은 글로벌 스코프에서 호출되어 undefined으로 되어 사용할 수 없기 때문이다.
+    2. bind를 사용하지 않으려면, 화살표 함수를 사용해야한다.
+
+    <br>
+
+  - 함수형에서 이벤트 핸들러를 정의 하는 방법은?
+    1. this를 사용하지 않고, onClick에서 바로 HandleClick으로 넘기면 된다.
+
+        ```jsx
+        // 방법 1. 함수 안에 함수로 정의
+        function handleClick() {
+          setIsToggleOn((isToggleOn) => !isToggleOn);
+        }
+        // 방법 2. row function을 사용하여 정의
+        const handleClick = () => {
+          setIsToggleOn((isToggleOn) => !isToggleOn);
+        }
+
+        return (
+          <button onClick={activate}>
+            Activate
+          </button>
+        )
+        ```
+
+2. **Arguments 전달히기**
+  - 함수를 정의 할 때는 피라미터(Parmeter) 혹은 매개변수, 함수를 사용할 때는 아귀먼트(Argument) 혹은 인자라고 부른다.
+  - 이벤트 핸들러에 매개변수를 전달해야 하는 경우도 많다.
+
+    ```jsx
+    <button onClick={(event) => this.deleteItem(id.event)}>
+      삭제하기
+    </button>
+    <button onClick={this.deleteItem.bind(this, id)}>
+      삭제하기
+    </button>
+    ```
+  - 위의 코드는 모두 동일한 역할을 하지만, 하나는 화살표 함수, 다른 하나는 bind를 사용했다.
+  - event라는 매개변수는 리액트의 이벤트 객체를 의미한다.
+  - 두 방법 모두 첫 번째 매개변수는 id이고 두 번째 매개변수로 event가 전달된다.
+  - 첫 번째 코드는 명시적으로 event를 매개변수로 넣어 주었고, 두 번째 코드는 id 이후 두 번째 매개변수로 event가 자동 전달 된다.(이 방법은 클래스 형에서 사용하는 방법이다.)
+> - event는 굳이 event라고 안써도 되지만 기본적으로 event 혹은 e 이런 방식으로 써준다.
+
+<br>
+
+### **9장 내용(조건부 렌더링)**
+
+1. **조건부 렌더링이란?**
+
+  - 여기서 조건이란 우리가 알고 있는 조건문의 조건이다.
+    
+    ```jsx
+    function Greeting(props) {
+      const isLoggedIn = props.isLoggedIn;
+      if(isLoggedIn) {
+        return <UserGreeting />;
+      }
+      return <GuestGreeting />;
+    }
+    ```
+
+2. **엘리먼트 변수**
+
+  - 렌더링해야 될 컴포넌트를 변수처럼 사용하는 벙법이 엘리먼트 변수이다.
+  - state에 따라 button 변수에 컴포넌트의 객체를 저장하여 return문에서 사용하고 있다.
+
+3. **인라인 조건**
+
+  - 필요한 곳에 조건문을 직접 넣어 사용하는 방법
+
+  - ① 인라인 if
+    - if 문을 직접 사용하지 않고, 동일한 효과를 내기 위해 && 논리 연산자를 사용한다.
+    - &&는 and 연산자로 모든 조건이 참일때만 참이 된다.
+    - 첫 번째 조건이 거짓이라면 두 번째 조건은 판단할 필요가 없다.(단축평가)
+      ```jsx
+      =
+      true && expression -> expression
+      false && expression -> false
+      =
+
+      {unreadMessage.length > 0 &&
+        <h2>
+          현재 {unreadMessage.length}개의 읽지 않은 메시지가 있습니다.
+        </h2>
+      }
+      ```
+    - 판단만 하지 않는 것이고, 결과값은 그대로 리턴된다.
+
+  - ② 인라인 if-else
+    - 삼항 연산자를 사용한다.
+    - 문자열이나 엘리먼트를 넣어 사용할 수도 있다.
+    - `조건문 ? 참일 경우 : 거짓일 경우`
+
+4. **컴포넌트 렌더링 막기**
+  
+  - 컴포넌트를 렌더링하고 싶지 않을 때에는 null을 리턴한다.
+
+<br>
+
+## **7주차 (2023.04.13)**
+---
+### **7장 내용**
+**= 훅**
 1. 훅인란?
 >  - 클래스형 컴포넌트에서는 생성자(constructor)에서 state를 정의하고, setState() 함수를 통해 state를 업데이트 한다.
 >  -  예전에 사용하던 함수형 컴포넌트는 별도로 state를 정의하거나, 컴포넌트의 생명주기에 맞춰서 어떤 코드가 실행되도록 할 수 없었다.

@@ -8,16 +8,20 @@ import Clock from './chapter_04/Clock'; // Clock.jsx 파일의 화면의 링크
 import CommentList from './chapter_05/CommentList'; // CommentList.jsx 파일의 화면의 링크
 import NotificationList from './chapter_06/NotificationList'; // NotificationList.jsx 파일의 화면의 링크
 import Accommodate from './chapter_07/Accommodate'; // Accommodate.jsx 파일의 화면의 링크
+import ConfirmButton from './chapter_08/ConfirmButton';
+import LandingPage from './chapter_09/LandingPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
   root.render(
     <React.StrictMode>
-      <Accommodate />
+      <LandingPage />
+      {/* <ConfirmButton /> */}
+      {/* <Accommodate />
       <NotificationList />
       <CommentList />
       <Clock />
-      <Library />
+      <Library /> */}
       {/* <App /> */}
     </React.StrictMode>
   );
